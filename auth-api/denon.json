@@ -1,0 +1,59 @@
+{
+  "$schema": "https://deno.land/x/denon/schema.json",
+  "scripts": {
+    "start": {
+      "cmd": "deno run --unstable server.ts",
+      "desc": "run my server.ts file",
+      "env": {
+        "PORT": "5050",
+        "environment": "prod"
+      },
+      "allow": [
+        "net",
+        "env",
+        "write",
+        "read",
+        "plugin"
+      ],
+      "logger": {
+        "debug": true
+      }
+    },
+    "dev": {
+      "cmd": "deno run --unstable server.ts",
+      "desc": "run my server.ts file",
+      "env": {
+        "PORT": "5000",
+        "environment": "dev"
+      },
+      "allow": [
+        "net",
+        "env",
+        "write",
+        "read",
+        "plugin"
+      ],
+      "logger": {
+        "debug": true
+      }
+    },
+    "docker:up": {
+      "cmd": "docker build -t app . && docker run -it --name auth-api --init -p 5050:5050 app",
+      "desc": "run my server.ts file in a container",
+      "env": {
+        "PORT": "5050",
+        "environment": "dev"
+      },
+      "allow": [
+        "net",
+        "env",
+        "write",
+        "read",
+        "plugin"
+      ],
+      "logger": {
+        "debug": true
+      }
+    }
+  }
+}

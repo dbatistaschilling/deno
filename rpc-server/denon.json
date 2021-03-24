@@ -1,0 +1,70 @@
+{
+  "$schema": "https://deno.land/x/denon/schema.json",
+  "scripts": {
+    "start": {
+      "cmd": "deno run app.js",
+      "desc": "run my prod app.js file",
+      "allow": ["env", "write", "read", "plugin", "net"],
+      "unstable": true,
+      "env": {
+        "DENO_ENV": "prod"
+      }
+    },
+    "bundle": {
+      "cmd": "rm -f ./dist/app.js && deno bundle ./src/app.ts ./dist/app.js",
+      "desc": "bundle project",
+      "unstable": true,
+      "watch": false
+    },
+    "dev": {
+      "cmd": "deno run src/app.ts",
+      "desc": "run my dev app.ts file",
+      "allow": ["env", "write", "read", "plugin", "net"],
+      "unstable": true,
+      "env": {
+        "DENO_ENV": "dev"
+      }
+    },
+    "docker:up:dev": {
+      "cmd": "docker-compose up --build",
+      "desc": "run my dev app.ts file",
+      "allow": ["env", "write", "read", "plugin", "net"],
+      "unstable": true,
+      "env": {
+        "DENO_ENV": "dev"
+      }
+    },
+    "docker:stop": {
+      "cmd": "docker-compose stop",
+      "desc": "stop container",
+      "watch": false
+    },
+    "docker:up:prod": {
+      "cmd": "docker-compose -f docker-compose.yml -f docker-compose.production.yml up",
+      "desc": "run my dev app.ts file",
+      "allow": ["env", "write", "read", "plugin", "net"],
+      "unstable": true,
+      "env": {
+        "DENO_ENV": "dev"
+      },
+      "watch": false
+    },
+    "docs": {
+      "cmd": "deno doc --json ./src/app.ts ./doc",
+      "desc": "Project docs",
+      "watch": false
+    }
+  },
+  "watcher": {
+    "interval": 350,
+    "exts": ["ts"],
+    "match": ["*.*"],
+    "skip": ["*/.git/*"],
+    "legacy": false
+  },
+  "logger": {
+    "fullscreen": false,
+    "quiet": false,
+    "debug": true
+  }
+}

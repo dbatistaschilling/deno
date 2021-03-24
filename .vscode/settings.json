@@ -1,0 +1,14 @@
+{
+
+  "deno.enable": true,
+  "deno.import_map": "./path/to/import_map.json",
+  "deno.unstable": false,
+
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno",
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "denoland.vscode-deno",
+  },
+  
+}

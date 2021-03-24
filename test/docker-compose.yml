@@ -1,0 +1,28 @@
+version: "3.8"
+
+services: 
+    db:
+        image: mongo:3
+        restart: always
+        volumes: 
+            - ./db:/db
+        environment:
+            MONGO_DATABASE: "denoblog"
+            MONGO_ROOT_PASSWORD: 63eaQB9wtLqmNBpg
+    api:
+        build: .
+        restart: always
+        links:
+            - db
+        depends_on: 
+            - db
+        volumes: 
+            - ./:/app
+        ports: 
+            - 3000:3000
+        environment: 
+            - DB_HOST=db # this should be identical to the database service name
+            - DB_USER=root
+            - DB_DATABASE=denoblog
+            - DB_PASSWORD=63eaQB9wtLqmNBpg
+            - TOKEN_SECRET=QA3GCPvnNO3e6x29dFfzbvIlP8pRNwif # don't forget to change this

@@ -1,0 +1,38 @@
+version: "3.8"
+
+services: 
+    mongodb:
+        image: mongo:3
+        container_name: mongodb
+        restart: always
+        ports: 
+            - 27017-27019:27017-27019
+        volumes:
+            - mongodb:/data/dev_db
+        command: mongod --port 27018 --bind_ip_all
+
+    api:
+        build: ./dist/
+        restart: always
+        links:
+            - mongodb
+        depends_on: 
+            - mongodb
+        volumes: 
+            - ./:/app
+        ports: 
+            - 8000:8000
+        environment:
+            - DENO_ENV=prod
+            - DB_HOST=db # this should be identical to the database service name
+            - DB_USER=root
+            - DB_DATABASE=models-api
+            - DB_PASSWORD=63eaQB9wtLqmNBpg
+            - TOKEN_SECRET=QA3GCPvnNO3e6x29dFfzbvIlP8pRNwif # don't forget to change this
+            - MONGO_URL=mongodb://mongodb:27018/models-api
+            - PORT=0.0.0.0:8000
+volumes:
+    mongodb:
+        driver: local
+
+# docker-compose -f docker-compose.yml -f docker-compose.production.yml up

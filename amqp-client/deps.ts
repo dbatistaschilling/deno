@@ -1,0 +1,1 @@
+export { connect } from "https://deno.land/x/amqp/mod.ts"

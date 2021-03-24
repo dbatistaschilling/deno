@@ -1,0 +1,22 @@
+{
+  "$schema": "https://deno.land/x/denon/schema.json",
+  "scripts": {
+    "start": {
+      "cmd": "deno run --unstable server.ts",
+      "desc": "run my server.ts file",
+      "env": {
+        "PORT": "3333"
+      },
+      "allow": [
+        "net",
+        "env",
+        "write",
+        "read",
+        "plugin"
+      ],
+      "logger": {
+        "debug": true
+      }
+    }
+  }
+}

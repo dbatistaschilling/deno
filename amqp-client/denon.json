@@ -1,0 +1,22 @@
+{
+  "$schema": "https://deno.land/x/denon/schema.json",
+  "scripts": {
+    "client": {
+      "cmd": "deno run client.ts queue",
+      "desc": "run my client.ts file",
+      "allow": ["env", "write", "read", "plugin", "net"]
+    }
+  },
+  "watcher": {
+    "interval": 350,
+    "exts": ["ts"],
+    "match": ["*.*"],
+    "skip": ["*/.git/*"],
+    "legacy": false
+  },
+  "logger": {
+    "fullscreen": false,
+    "quiet": false,
+    "debug": true
+  }
+}
